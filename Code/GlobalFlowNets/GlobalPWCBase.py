@@ -106,10 +106,8 @@ class GlobalPWCBase(PWCNet):
         shape = im1.shape
         newShape = [int(64 * math.ceil(im1.shape[2] / 64.0)),
                     int(64 * math.ceil(im1.shape[3] / 64.0))]
-        im1 = torch.nn.functional.interpolate(
-            im1, size=newShape, mode='bilinear')
-        im2 = torch.nn.functional.interpolate(
-            im2, size=newShape, mode='bilinear')
+        im1 = torch.nn.functional.interpolate(im1, size=newShape, mode='bilinear')
+        im2 = torch.nn.functional.interpolate(im2, size=newShape, mode='bilinear')
         flow = self.estimateFlow(im1, im2, fullScale=interPolate)
         if interPolate is False:
             shape[2] /= 4
